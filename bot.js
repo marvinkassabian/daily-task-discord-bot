@@ -3,7 +3,7 @@
   const client = new Discord.Client();
 
   client.on('ready', () => {
-    console.log('I am ready!');
+    console.log(`Logged in as ${client.user.tag}!`);
   });
 
   client.on('message', message => {
@@ -12,6 +12,10 @@
     }
   });
 
-  client.login(process.env.BOT_TOKEN);
+  client.on('debug', console.log);
+
+  console.log('Attempting login');
+  const token = process.env.BOT_TOKEN;
+  client.login(token).catch(console.error);
 
 })();
