@@ -1,1 +1,1 @@
-procfile
+worker: node bot.js
