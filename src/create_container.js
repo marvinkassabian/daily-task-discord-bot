@@ -1,18 +1,19 @@
 "use strict";
 
 import Container from './container.js';
-import provideLogger from './provide/provide_logger.js';
-import provideApi from './provide/provide_api.js';
-import provideClient from './provide/provide_client.js';
-import provideToken from './provide/provide_token.js';
+import Client from './client.js';
+import Service from './service.js';
+import Api from './api.js';
+import token from './token.js';
 
-export default function createContainer() {
+export default function () {
     let container = Object.create(Container).init();
 
-    provideLogger(container);
-    provideApi(container);
-    provideClient(container);
-    provideToken(container);
+    container.service('Logger', _container => Object.create(Logger).init());
+    container.service('token', _container => token);
+    container.service('Client', container => Object.create(Client).init(container.Logger, container.token, container.Service));
+    container.service('Api', _container => Object.create(Api).init());
+    container.service('Service', container => Object.create(Service).init(container.Api))
 
     return container;
 };

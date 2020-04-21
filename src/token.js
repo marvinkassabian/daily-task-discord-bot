@@ -1,7 +1,7 @@
 "use strict";
 
-/// use the command `git update-index --assume-unchanged <file>`
-/// and the commend `git update-index --no-assume-unchanged <file>`
+/// use the command `git update-index --assume-unchanged src/secret_token.json`
+/// and the commend `git update-index --no-assume-unchanged src/secret_token.json`
 /// to toggle hiding the secret token from version control
 import { token } from './secret_token.json';
 

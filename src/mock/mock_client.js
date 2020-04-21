@@ -11,13 +11,13 @@ Client.start = function () {
     this.logger.log(`Logged in as ${this.client.user.tag}!`);
   });
 
-  this.client.on('message', message => {
+  this.on('message', message => {
     if (message.content === 'ping') {
       message.reply('pong');
     }
   });
 
-  this.client.on('debug', this.logger.log);
+  this.on('debug', this.logger.log);
 
   this.logger.log('Attempting login');
 };
