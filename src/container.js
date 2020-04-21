@@ -1,6 +1,5 @@
-"use strict";
-
 const Container = {};
+
 Container.init = function () {
   this.services = {};
 

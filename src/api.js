@@ -1,5 +1,3 @@
-"use strict";
-
 const Api = {};
 
 Api.init = function () {

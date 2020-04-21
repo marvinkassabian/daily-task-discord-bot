@@ -1,5 +1,3 @@
-"use strict";
-
 const Logger = {};
 
 Logger.init = function () {
