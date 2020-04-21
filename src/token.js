@@ -1,6 +1,6 @@
 "use strict";
 
-import config from './config.json';
+import { token } from './secret_token.json';
 
 export default (function () {
     switch (process.env.NODE_ENV) {
@@ -8,9 +8,9 @@ export default (function () {
             return process.env.BOT_TOKEN;
 
         case 'development':
-            return config.token;
+            return token;
 
         default:
-            return config.token;
+            return token;
     }
 })();
