@@ -1,6 +1,6 @@
-/// use the command `git update-index --assume-unchanged src/secret_token.json`
-/// and the commend `git update-index --no-assume-unchanged src/secret_token.json`
-/// to toggle hiding the secret token from version control
+/// use the command `git update-index --assume-unchanged src/secret_tokens.json`
+/// and the commend `git update-index --no-assume-unchanged src/secret_tokens.json`
+/// to toggle hiding the secret tokens from version control
 import secretTokens from './secret_tokens.json';
 
 export default (function () {

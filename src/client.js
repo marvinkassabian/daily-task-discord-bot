@@ -13,7 +13,7 @@ Client.init = function (logger, token, service) {
 
 Client.start = function () {
   this.client.on('ready', () => {
-    this.logger.log(`Logged in as ${client.user.tag}!`);
+    this.logger.log(`Logged in as ${this.client.user.tag}!`);
   });
 
   this.client.on('message', (message) => {
