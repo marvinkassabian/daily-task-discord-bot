@@ -2,9 +2,10 @@
   "name": "daily-task-discord-bot",
   "description": "discord bot to set a daily reminder for tasks",
   "version": "0.0.0",
-  "main": "bot.js",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node bot.js"
+    "start": "NODE_ENV=production node --experimental-json-modules index.js"
   },
   "dependencies": {
     "cryptiles": ">=4.1.2",
