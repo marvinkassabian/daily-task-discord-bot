@@ -6,12 +6,13 @@ import secretTokens from './secret_tokens.json';
 export default (function () {
     switch (process.env.NODE_ENV) {
         case 'production':
-            return process.env.BOT_TOKEN;
+            return {
+                "discord": process.env.BOT_TOKEN,
+                "firebase": null
+            };
 
         case 'development':
-            return secretTokens.discord;
-
         default:
-            return secretTokens.discord;
+            return secretTokens;
     }
 })();
