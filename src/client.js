@@ -2,16 +2,20 @@ import Discord from 'discord.js';
 
 const Client = {};
 
-Client.init = function (logger, token, config) {
+Client.init = function (logger, token, config, api) {
   this.logger = logger;
   this.discordClient = new Discord.Client();
   this.token = token;
   this.config = config;
+  this.api = api;
 
   return this;
 };
 
 Client.start = function () {
+
+  this.api.postAda();
+
   this.discordClient.once('ready', () => {
     this.logger.log(`Logged in as ${this.discordClient.user.tag}!`);
   });

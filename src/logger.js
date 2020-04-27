@@ -13,4 +13,3 @@ Logger.error = function (message) {
 }
 
 export default Logger;
-

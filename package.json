@@ -5,12 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "NODE_ENV=production node --experimental-json-modules index.js",
-    "start-dev": "NODE_ENV=development node --experimental-json-modules index.js"
+    "start": "NODE_ENV=production node --experimental-json-modules --require dotenv/config index.js"
   },
   "dependencies": {
     "cryptiles": ">=4.1.2",
     "discord.js": "^11.6.4",
+    "dotenv": "^8.2.0",
+    "firebase": "^7.14.2",
+    "firebase-admin": "^8.11.0",
     "hoek": ">=4.2.1",
     "node": "^13.13.0",
     "request": "^2.88.2",
