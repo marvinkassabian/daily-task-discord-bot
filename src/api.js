@@ -1,44 +1,36 @@
-import admin from 'firebase-admin';
+const admin = require('firebase-admin');
 
-const Api = {};
+module.exports = ({ config }) => {
+    admin.initializeApp({
+        credential: admin.credential.cert(config.firebase.service_account),
+        databaseURL: config.firebase.database_url,
+    });
 
-Api.init = function (logger) {
+    const firestore = admin.firestore();
 
-    const serviceAccount = {
-        type: process.env.FIREBASE_SERVICE_ACCOUNT_TYPE,
-        project_id: process.env.FIREBASE_SERVICE_ACCOUNT_PROJECT_ID,
-        private_key_id: process.env.FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID,
-        private_key: process.env.FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY,
-        client_email: process.env.FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL,
-        client_id: process.env.FIREBASE_SERVICE_ACCOUNT_CLIENT_ID,
-        auth_uri: process.env.FIREBASE_SERVICE_ACCOUNT_AUTH_URI,
-        token_uri: process.env.FIREBASE_SERVICE_ACCOUNT_TOKEN_URI,
-        auth_provider_x509_cert_url: process.env.FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL,
-        client_x509_cert_url: process.env.FIREBASE_SERVICE_ACCOUNT_CLIENT_X590_CERT_URL
+    const logMessage = (message) => {
+        firestore
+            .collection(`guilds/${message.guild.id}/command_logs`)
+            .add({
+                message: {
+                    id: message.id,
+                    content: message.content,
+                    createdTimestamp: message.createdTimestamp,
+                },
+                author: {
+                    id: message.author.id,
+                    username: message.author.username,
+                }
+            });
     };
 
-    this.logger = logger;
+    const postTask = (guildId, task) => {
+        firestore
+            .collection(`guilds/${guildId}/tasks`)
+            .add(task);
+    };
 
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        databaseURL: process.env.FIREBASE_DATABASE_URL
+    return Object.freeze({
+        logMessage,
     });
-
-    this.firestore = admin.firestore();
-
-    return this;
-}
-
-Api.postAda = function () {
-    let docRef = this.firestore.collection('users').doc('alovelace');
-
-    let setAda = docRef.set({
-        first: 'Ada',
-        last: 'Lovelace',
-        born: 1815
-    });
-
-    return Promise.all([setAda]);
-}
-
-export default Api;
+};

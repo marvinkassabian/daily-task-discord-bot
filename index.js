@@ -1,3 +1,5 @@
-import createContainer from './src/create_container.js';
+const getContainer = require('./src/get_container.js');
 
-createContainer().Client.start();
+const container = getContainer();
+const client = container.render("Client");
+client.run();

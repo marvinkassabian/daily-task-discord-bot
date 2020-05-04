@@ -1,25 +1,16 @@
-const Container = {};
+module.exports = () => {
+    const callbacks = {};
+    const services = {};
 
-Container.init = function () {
-  this.services = {};
+    const register = (name, callback) => callbacks[name] = () => callback(render);
+    const render = (name) => {
+        if (!services[name])
+            services[name] = callbacks[name]();
+        return services[name];
+    };
 
-  return this;
+    return Object.freeze({
+        register,
+        render,
+    });
 };
-
-Container.service = function (name, callback) {
-  Object.defineProperty(this, name, {
-    get: () => {
-      if (!this.services.hasOwnProperty(name)) {
-        this.services[name] = callback(this);
-      }
-
-      return this.services[name];
-    },
-    configurable: true,
-    enumerable: true
-  });
-
-  return this;
-};
-
-export default Container;

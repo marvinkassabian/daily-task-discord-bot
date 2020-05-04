@@ -3,16 +3,17 @@
   "description": "discord bot to set a daily reminder for tasks",
   "version": "0.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "NODE_ENV=production node --experimental-json-modules --require dotenv/config index.js"
+    "start": "NODE_ENV=production node --require dotenv/config index.js",
+    "heroku-start": "NODE_ENV=production node index.js"
   },
   "dependencies": {
     "cryptiles": ">=4.1.2",
-    "discord.js": "^11.6.4",
+    "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "firebase": "^7.14.2",
     "firebase-admin": "^8.11.0",
+    "fs": "0.0.1-security",
     "hoek": ">=4.2.1",
     "node": "^13.13.0",
     "request": "^2.88.2",

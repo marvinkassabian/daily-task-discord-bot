@@ -1,15 +1,11 @@
-const Logger = {};
+module.exports = () => {
+  const log = message => console.log(message);
+  const info = message => console.log(`[INFO] ${message}`);
+  const error = message => console.log(`[ERROR] ${message}`);
 
-Logger.init = function () {
-  return this;
-}
-
-Logger.log = function (message) {
-  console.log(message);
-}
-
-Logger.error = function (message) {
-  console.error(message);
-}
-
-export default Logger;
+  return Object.freeze({
+    log,
+    info,
+    error,
+  });
+};
