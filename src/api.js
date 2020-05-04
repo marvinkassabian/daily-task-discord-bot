@@ -1,14 +1,14 @@
 const admin = require('firebase-admin');
 
-module.exports = ({ config }) => {
+module.exports = ({ $config }) => {
     admin.initializeApp({
-        credential: admin.credential.cert(config.firebase.service_account),
-        databaseURL: config.firebase.database_url,
+        credential: admin.credential.cert($config.firebase.service_account),
+        databaseURL: $config.firebase.database_url,
     });
 
     const firestore = admin.firestore();
 
-    const logMessage = (message) => {
+    const postMessageLog = (message) => {
         firestore
             .collection(`guilds/${message.guild.id}/command_logs`)
             .add({
@@ -31,6 +31,6 @@ module.exports = ({ config }) => {
     };
 
     return Object.freeze({
-        logMessage,
+        postMessageLog,
     });
 };

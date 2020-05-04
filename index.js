@@ -1,5 +1,5 @@
-const getContainer = require('./src/get_container.js');
+const createInjector = require('./src/create_injector.js');
 
-const container = getContainer();
-const client = container.render("Client");
+const container = createInjector();
+const client = container.render("$client");
 client.run();
