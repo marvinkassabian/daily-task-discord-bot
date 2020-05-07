@@ -1,7 +1,7 @@
 const config = require('./config.json');
 
 module.exports = () => {
-    const Config = Object.freeze({
+    const Config = {
         firebase: {
             service_account: {
                 type: process.env.FIREBASE_SERVICE_ACCOUNT_TYPE,
@@ -21,7 +21,7 @@ module.exports = () => {
             bot_token: process.env.DISCORD_BOT_TOKEN,
         },
         ...config
-    });
+    };
 
     return Object.freeze(Config);
 };

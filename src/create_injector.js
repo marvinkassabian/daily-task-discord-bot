@@ -1,13 +1,13 @@
+const { Injector } = require('@marvinkassabian/dependency-injection');
 const Logger = require('./logger.js');
 const Api = require('./api.js');
 const Client = require('./client.js');
-const Injector = require('./injector.js');
 const parseMessage = require('./parse_message.js');
 const getCommands = require('./get_commands.js');
 const Config = require('./config.js');
 
 module.exports = () => {
-    const injector = Injector();
+    const injector = Injector({ prefix: '$' });
 
     injector.register("$config", Config);
     injector.register("$parseMessage", parseMessage);
